@@ -1,0 +1,89 @@
+[
+  {
+    "id": 1,
+    "age": 0.9,
+    "event": {
+      "title": "FIRST WORD!",
+      "color": "#F4CE14",
+      "content": "Most of the people get their first word at the age of one!",
+      "thumbnailUrl": ""
+    }
+  },
+
+  {
+    "id": 1,
+    "age": 1.16,
+    "event": {
+      "title": "WALK WALK!",
+      "color": "#7ED7C1",
+      "content": "On average, babies start walking close to 12 months of age. What age you started to walk?",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1476089194965-888edb96d2dc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  },
+
+  {
+    "id": 1,
+    "age": 4,
+    "event": {
+      "title": "First School",
+      "color": "#22ffff",
+      "content": "The average age to start school"
+    }
+  },
+
+  {
+    "id": 1,
+    "age": 29.2,
+    "event": {
+      "title": "Get Married!",
+      "color": "#F875AA",
+      "content": "The average age to get married"
+    }
+  },
+
+  {
+    "id": 1,
+    "age": 15.5,
+    "event": {
+      "title": "Average age to have their first kiss",
+      "color": "#F875AA",
+      "content": "The average age for people to get their first kiss based on pfizer.com"
+    }
+  },
+  {
+    "id": 2,
+    "age": 12,
+    "event": {
+      "title": "Average age to have their first kiss",
+      "color": "skyblue",
+      "content": "The average age for people to get their first kiss based on pfizer.com"
+    }
+  },
+  {
+    "id": 2,
+    "age": 23.7,
+    "event": {
+      "title": "Average age to have their first kiss",
+      "color": "gold",
+      "content": "The average age for people to get their first kiss based on pfizer.com"
+    }
+  },
+  {
+    "id": 2,
+    "age": 65,
+    "event": {
+      "title": "Average age to have their first kiss",
+      "color": "brown",
+      "content": "The average age for people to get their first kiss based on pfizer.com"
+    }
+  },
+  {
+    "id": 2,
+    "age": 73.4,
+    "event": {
+      "title": "Average human lifespan",
+      "color": "black",
+      "content": "Glad that you made it this far."
+    }
+  }
+]
