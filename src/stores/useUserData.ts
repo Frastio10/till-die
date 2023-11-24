@@ -12,7 +12,7 @@ interface UserData {
 
 export const useUserStore = create<UserData>()((set) => ({
   birth: "08/10/2003",
-  expectedAge: 80,
+  expectedAge: 40,
   isGenerated: false,
   setBirth: (birth) => set(() => ({ birth })),
   setExpectedAge: (age) => set(() => ({ expectedAge: age })),
