@@ -38,10 +38,8 @@ export default function Home() {
   useEffect(() => {
     if (currentEvent !== null) {
       document.body.style.overflow = "hidden";
-      document.body.style.maxHeight = "100vh";
     } else {
       document.body.style.overflow = "unset";
-      document.body.style.maxHeight = "unset";
     }
   }, [currentEvent]);
 

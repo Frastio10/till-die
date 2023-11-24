@@ -4,6 +4,9 @@ import moment from "moment";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import Week from "./Week";
+import { useEvent } from "@/stores";
+import { getWeekIndex } from "@/utils/math";
+import eventsData from "@/data/events.json";
 import {
   DAYS_IN_WEEK,
   DAYS_IN_YEAR,
@@ -11,9 +14,6 @@ import {
   WEEKS_IN_YEAR,
   YEARS_IN_DECADE,
 } from "@/config/contants";
-import { useEvent } from "@/stores";
-
-const eventsData = require("../data/events.json");
 
 interface CalendarProps {
   userBirth: string | number;
@@ -26,14 +26,13 @@ const Calendar = ({
   expectedAge,
   currentPopupWindow,
 }: CalendarProps) => {
+  const { setCurrentEvent } = useEvent();
+
   const birth = moment(new Date(userBirth));
   const now = moment(new Date());
 
-  console.log("ha")
-
-  const { setCurrentEvent } = useEvent();
   const expectedYear = expectedAge;
-  const expectedWeeks = (DAYS_IN_YEAR * expectedYear) / DAYS_IN_WEEK; // The expected date in weeks
+  const expectedWeeks = (DAYS_IN_YEAR * expectedYear) / DAYS_IN_WEEK;
 
   const dayAmt = moment.duration(now.diff(birth)).asWeeks();
   const normalizedAmount = Math.ceil(dayAmt);
@@ -51,20 +50,6 @@ const Calendar = ({
     );
 
     return event;
-  };
-
-  const getWeekIndex = (
-    currentDecade: number,
-    currentYear: number,
-    currentWeek: number,
-  ) => {
-    const result =
-      currentDecade * (YEARS_IN_DECADE * WEEKS_IN_YEAR) +
-      currentYear * WEEKS_IN_YEAR +
-      currentWeek +
-      1;
-
-    return result;
   };
 
   return (
@@ -149,23 +134,3 @@ const SectionRow = styled.div`
 `;
 
 export default Calendar;
-
-// const memo = React.memo(
-//   Calendar,
-//   (oldProps, newProps) =>
-//     oldProps.userBirth === newProps.userBirth ||
-//     oldProps.expectedAge === newProps.expectedAge,
-// );
-// memo.displayName = "Calendar";
-
-// const CalendarRow = styled.div`
-//   display: grid;
-//   gap: 2px;
-//   grid-template-columns: repeat(1, minmax(0, 1fr));
-//   margin-bottom: 1.5px;
-//   width: 100%;
-
-//   @media only screen and (min-width: 768px) {
-//     grid-template-columns: repeat(1, minmax(0, 1fr));
-//   }
-// `;

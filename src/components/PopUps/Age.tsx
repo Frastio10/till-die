@@ -8,9 +8,13 @@ interface WindowProps {
   setWindow: (window: number | null) => void;
 }
 
+interface AgeProps {
+  currentWindow: number | null;
+  setCurrentWindow: (window: number | null) => void;
+}
+
 const FormWindow = ({ window, setWindow }: WindowProps) => {
-  const [isAge, setIsAge] = useState(false);
-  const { setExpectedAge, setBirth, birth, expectedAge } = useUserStore();
+  const { setExpectedAge, setBirth } = useUserStore();
   const [values, setValues] = useState({
     age: null,
     expectedAge: 80,
@@ -44,20 +48,14 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
 
       <InputText
         name="age"
-        type={isAge ? "number" : "date"}
+        type={"date"}
         placeholder="Age"
         value={values.age as any}
         onChange={onChange}
       />
 
       <SmallText style={{ fontSize: "10px", marginBottom: "20px" }}>
-        {/* {isAge */}
-        {/*   ? "For detailed calendar, you can put your instead." */}
-        {/*   : "Want to use your age instead?"}{" "} */}
-        Don&apos;t worry, we won&apos;t save your data.{" "}
-        {/* <u style={{ cursor: "pointer" }} onClick={() => setIsAge(!isAge)}> */}
-        {/*   Click here. */}
-        {/* </u> */}
+        Don&apos;t worry, we won&apos;t save your data.
       </SmallText>
 
       <InputText
@@ -108,6 +106,7 @@ const LoadingWindow = ({ window, setWindow }: WindowProps) => {
     if (amount > 3) {
       setWindow(null);
       localStorage.setItem("is_valid", "1");
+      document.body.style.overflow = "unset";
     }
   }, [amount]);
 
@@ -131,28 +130,14 @@ const LoadingWindow = ({ window, setWindow }: WindowProps) => {
   );
 };
 
-const Center = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-`;
-
-interface AgeProps {
-  currentWindow: number | null;
-  setCurrentWindow: (window: number | null) => void;
-}
 function AgePop({ currentWindow, setCurrentWindow }: AgeProps) {
   // const [currentWindow, setCurrentWindow] = useState<number | null>(0);
 
   useEffect(() => {
     if (currentWindow !== null) {
       document.body.style.overflow = "hidden";
-      document.body.style.maxHeight = "100dvh";
     } else {
       document.body.style.overflow = "unset";
-      document.body.style.maxHeight = "unset";
     }
   }, []);
 
@@ -171,6 +156,14 @@ function AgePop({ currentWindow, setCurrentWindow }: AgeProps) {
     </Wrapper>
   );
 }
+
+const Center = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Button = styled.button`
   margin: 0 auto;

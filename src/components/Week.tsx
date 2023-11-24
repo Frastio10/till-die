@@ -5,11 +5,7 @@ import {
   colorFillAnimate,
   fadeInAnimate,
 } from "./keyframes/animations";
-import {
-  generateBoxShadow,
-  getWeekBorderColor,
-  getWeekSquareColor,
-} from "@/utils/styles";
+import { generateBoxShadow } from "@/utils/styles";
 import { BASE_FILL_ANIMATION_DELAY } from "@/config/contants";
 import { EventData } from "@/types";
 
@@ -32,7 +28,6 @@ function Week({
   popupWindow,
   onClickEvent,
 }: WeekProps) {
-  console.log('up week')
   return (
     <Wrapper>
       {event && (

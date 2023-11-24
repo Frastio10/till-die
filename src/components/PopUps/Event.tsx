@@ -23,10 +23,8 @@ export default function Event() {
   useEffect(() => {
     if (currentEvent !== null) {
       document.body.style.overflow = "hidden";
-      document.body.style.maxHeight = "100vh";
     } else {
       document.body.style.overflow = "unset";
-      document.body.style.maxHeight = "unset";
     }
   }, [currentEvent, setCurrentEvent]);
 
@@ -51,6 +49,7 @@ export default function Event() {
               width={260}
               height={175}
               alt={currentEvent.event.title}
+              style={{ objectFit: "cover" }}
             />
           )}
 

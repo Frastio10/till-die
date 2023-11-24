@@ -6,7 +6,7 @@
       "title": "FIRST WORD!",
       "color": "#F4CE14",
       "content": "Most of the people get their first word at the age of one!",
-      "thumbnailUrl": ""
+      "thumbnailUrl": "https://images.unsplash.com/photo-1557939574-a2cb399f443f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   },
 
@@ -27,17 +27,8 @@
     "event": {
       "title": "First School",
       "color": "#22ffff",
-      "content": "The average age to start school"
-    }
-  },
-
-  {
-    "id": 1,
-    "age": 29.2,
-    "event": {
-      "title": "Get Married!",
-      "color": "#F875AA",
-      "content": "The average age to get married"
+      "content": "The average age to start school",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1544776193-32d404ae608a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2lkJTIwc2Nob29sfGVufDB8fDB8fHwy"
     }
   },
 
@@ -47,9 +38,22 @@
     "event": {
       "title": "Average age to have their first kiss",
       "color": "#F875AA",
-      "content": "The average age for people to get their first kiss based on pfizer.com"
+      "content": "The average age for people to get their first kiss based on pfizer.com",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1510276113764-7ac28415a9ec?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   },
+
+  {
+    "id": 1,
+    "age": 29.2,
+    "event": {
+      "title": "Get Married!",
+      "color": "#F875AA",
+      "content": "The average age to get married",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFycmlhZ2V8ZW58MHx8MHx8fDI%3D"
+    }
+  },
+
   {
     "id": 2,
     "age": 12,
@@ -83,7 +87,8 @@
     "event": {
       "title": "Average human lifespan",
       "color": "black",
-      "content": "Glad that you made it this far."
+      "content": "Glad that you made it this far.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1435163892681-9d67a2b1db7e?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   }
 ]

@@ -6,10 +6,12 @@ interface SpinnerProps {
   trackColor: string;
   size: number;
 }
+
 const Spinner = styled.div<SpinnerProps>`
   border: ${(props) => props.borderWidth}px solid ${(props) => props.trackColor};
   border-radius: 50%;
-  border-top: ${(props) => props.borderWidth}px solid ${(props) => props.spinnerColor};
+  border-top: ${(props) => props.borderWidth}px solid
+    ${(props) => props.spinnerColor};
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
   animation: spin 2s linear infinite;
