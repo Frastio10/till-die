@@ -29,6 +29,8 @@ const Calendar = ({
   const birth = moment(new Date(userBirth));
   const now = moment(new Date());
 
+  console.log("ha")
+
   const { setCurrentEvent } = useEvent();
   const expectedYear = expectedAge;
   const expectedWeeks = (DAYS_IN_YEAR * expectedYear) / DAYS_IN_WEEK; // The expected date in weeks

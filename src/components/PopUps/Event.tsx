@@ -2,6 +2,7 @@ import { useEvent } from "@/stores";
 import { adjust } from "@/utils/math";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Image from "next/image";
 
 export default function Event() {
   // const [currentWindow, setCurrentWindow] = useState<number | null>(0);
@@ -44,7 +45,15 @@ export default function Event() {
           }}
         >
           <Title>{currentEvent.event.title}</Title>
-          <Thumbnail src={currentEvent.event.thumbnailUrl} />
+          {currentEvent.event.thumbnailUrl && (
+            <Image
+              src={currentEvent.event.thumbnailUrl}
+              width={260}
+              height={175}
+              alt={currentEvent.event.title}
+            />
+          )}
+
           <Text>{currentEvent.event.content}</Text>
         </Inner>
       )}
