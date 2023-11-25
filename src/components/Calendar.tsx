@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Week from "./Week";
 import { useEvent } from "@/stores";
 import { getWeekIndex } from "@/utils/math";
-import eventsData from "@/data/events.json";
 import {
   DAYS_IN_WEEK,
   DAYS_IN_YEAR,
@@ -14,17 +13,20 @@ import {
   WEEKS_IN_YEAR,
   YEARS_IN_DECADE,
 } from "@/config/contants";
+import { EventData } from "@/types";
 
 interface CalendarProps {
   userBirth: string | number;
   expectedAge: number;
   currentPopupWindow: number | null;
+  eventsData: EventData[];
 }
 
 const Calendar = ({
   userBirth,
   expectedAge,
   currentPopupWindow,
+  eventsData,
 }: CalendarProps) => {
   const { setCurrentEvent } = useEvent();
 
@@ -37,16 +39,9 @@ const Calendar = ({
   const dayAmt = moment.duration(now.diff(birth)).asWeeks();
   const normalizedAmount = Math.ceil(dayAmt);
 
-  const events = useMemo(() => {
-    return eventsData.map((event: any) => ({
-      ...event,
-      weekIndex: Math.round(event.age * WEEKS_IN_YEAR),
-    }));
-  }, [eventsData]);
-
   const getEventFromIndex = (weekIndex: number) => {
-    const event = events.find(
-      (event: any) => event.weekIndex === weekIndex - 1,
+    const event = eventsData.find(
+      (event: any) => Math.round(event.age * WEEKS_IN_YEAR) === weekIndex - 1,
     );
 
     return event;
@@ -134,3 +129,10 @@ const SectionRow = styled.div`
 `;
 
 export default Calendar;
+
+// const events = useMemo(() => {
+//   return eventsData.map((event: any) => ({
+//     ...event,
+//     weekIndex: Math.round(event.age * WEEKS_IN_YEAR),
+//   }));
+// }, [eventsData]);

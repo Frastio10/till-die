@@ -8,6 +8,8 @@ import { useUserStore } from "@/stores/useUserData";
 import Event from "@/components/PopUps/Event";
 import { useEvent } from "@/stores";
 import { Quotes } from "@/components/Quotes";
+import eventsData from "@/data/events.json";
+import { EventData } from "@/types";
 
 const font = Gelasio({ weight: ["400", "500", "600"], subsets: ["latin"] });
 
@@ -71,8 +73,9 @@ export default function Home() {
 
         <h1 className="main-title">TILL DIE</h1>
 
-        {hasInitializedStore && (
+       {hasInitializedStore && (
           <Calendar
+            eventsData={eventsData as EventData[]}
             userBirth={birth}
             expectedAge={expectedAge}
             currentPopupWindow={currentPopupWindow}
