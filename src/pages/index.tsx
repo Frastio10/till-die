@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Gelasio } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Calendar from "@/components/Calendar";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import AgePop from "@/components/PopUps/Age";
 import { useUserStore } from "@/stores/useUserData";
 import Event from "@/components/PopUps/Event";
@@ -13,7 +13,7 @@ const font = Gelasio({ weight: ["400", "500", "600"], subsets: ["latin"] });
 
 export default function Home() {
   const quotes = require("../data/quotes.json");
-  const { currentEvent } = useEvent();
+  const { currentEvent, setCurrentEvent } = useEvent();
   const { setExpectedAge, setBirth, birth, expectedAge } = useUserStore();
 
   const [hasInitializedStore, setHasInitializedStore] = useState(false);
@@ -23,7 +23,6 @@ export default function Home() {
 
   useEffect(() => {
     if (!hasInitializedStore && typeof window !== "undefined") {
-
       const localExpectedAge = localStorage.getItem("expected_age");
       const localBirth = localStorage.getItem("age");
 
@@ -42,6 +41,17 @@ export default function Home() {
       document.body.style.overflow = "unset";
     }
   }, [currentEvent]);
+
+  const escFunction = useCallback((event: KeyboardEvent) => {
+    if (event.key === "Escape" && currentEvent) setCurrentEvent(null);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, [escFunction]);
 
   return (
     <>
