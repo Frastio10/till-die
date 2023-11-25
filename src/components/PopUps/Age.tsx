@@ -28,7 +28,7 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
   };
 
   const handleSubmit = async () => {
-    if (!checkIsValid()) return;
+    if (!checkFormValidity()) return;
 
     localStorage.setItem("age", values.age!);
     localStorage.setItem("expected_age", values.expectedAge.toString());
@@ -39,7 +39,7 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
     setWindow(1);
   };
 
-  const checkIsValid = () => {
+  const checkFormValidity = () => {
     if (!values.age) return false;
     const age = moment().diff(values.age, "years");
     if (age < 0 || age > 100) return false;
@@ -111,9 +111,9 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
 
       <Button
         style={{
-          cursor: checkIsValid() ? "pointer" : "not-allowed",
+          cursor: checkFormValidity() ? "pointer" : "not-allowed",
         }}
-        disabled={!checkIsValid()}
+        disabled={!checkFormValidity()}
         onClick={handleSubmit}
       >
         SUBMIT
