@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Spinner from "@/components/shared/Spinner";
 import { useUserStore } from "@/stores/useUserData";
+import moment from "moment";
 
 interface WindowProps {
   window: number | null;
@@ -27,14 +28,25 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
   };
 
   const handleSubmit = async () => {
-    if (!values.age) return;
-    localStorage.setItem("age", values.age);
+    if (!checkIsValid()) return;
+
+    localStorage.setItem("age", values.age!);
     localStorage.setItem("expected_age", values.expectedAge.toString());
 
     setExpectedAge(values.expectedAge);
-    setBirth(values.age);
+    setBirth(values.age!);
 
     setWindow(1);
+  };
+
+  const checkIsValid = () => {
+    if (!values.age) return false;
+    const age = moment().diff(values.age, "years");
+    if (age < 0 || age > 100) return false;
+    if (values.expectedAge < 20 || values.expectedAge > 100) return false;
+    if (values.expectedAge < age) return false;
+
+    return true;
   };
   return (
     <Window>
@@ -55,7 +67,17 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
       />
 
       <SmallText style={{ fontSize: "10px", marginBottom: "20px" }}>
-        Don&apos;t worry, we won&apos;t save your data.
+        {values.age
+          ? moment().diff(values.age, "years") > 0 &&
+            moment().diff(values.age, "years") < 100
+            ? "You are " +
+              moment().diff(values.age, "years") +
+              " year(s) old." +
+              (moment().diff(values.age, "years") < 5
+                ? " Are you sure though?"
+                : "")
+            : "Sorry, You can't do that."
+          : "Don&apos;t worry, we won&apos;t save your data."}
       </SmallText>
 
       <InputText
@@ -65,13 +87,37 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
         type="number"
         step={10}
         onChange={onChange}
-        min="0"
+        min="20"
+        max="100"
       />
       <SmallText style={{ fontSize: "10px" }}>
-        The default is <b>80</b>, you can set to multiply of 10
+        {values.expectedAge <= moment().diff(values.age, "years") ? (
+          <span>
+            Can't go lower than your current age. (
+            {moment().diff(values.age, "years")})
+          </span>
+        ) : values.expectedAge <= 20 ? (
+          <span>Uh, oh. No, You gotta live longer. :)</span>
+        ) : values.expectedAge <= 40 ? (
+          <span>Are you okay?</span>
+        ) : values.expectedAge >= 90 ? (
+          <span>We really hope that you would make it this far!</span>
+        ) : (
+          <span>
+            The default is <b>80</b>, you can set to multiply of 10.
+          </span>
+        )}
       </SmallText>
 
-      <Button onClick={handleSubmit}>SUBMIT</Button>
+      <Button
+        style={{
+          cursor: checkIsValid() ? "pointer" : "not-allowed",
+        }}
+        disabled={!checkIsValid()}
+        onClick={handleSubmit}
+      >
+        SUBMIT
+      </Button>
     </Window>
   );
 };
