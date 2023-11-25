@@ -93,7 +93,7 @@ const FormWindow = ({ window, setWindow }: WindowProps) => {
       <SmallText style={{ fontSize: "10px" }}>
         {values.expectedAge <= moment().diff(values.age, "years") ? (
           <span>
-            Can't go lower than your current age. (
+            Can&apos;t go lower than your current age. (
             {moment().diff(values.age, "years")})
           </span>
         ) : values.expectedAge <= 20 ? (
